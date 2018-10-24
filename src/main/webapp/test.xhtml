@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <title>PrimeFaces Test</title>
+    </h:head>
+    <h:body>
+
+        <h1>#{testView.testString}</h1>
+
+        <h:form>
+            <p:commandButton value="Ajax Submit" actionListener="#{httpcalls.hpp}"  update="ikebana" />
+            <h:outputText id="ikebana" value = "#{httpcalls.ikebana}" />
+
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputText value="Counter: " />
+                <h:outputText id="output" value="#{incre.number}" />
+            </h:panelGrid>
+
+            <p:commandButton value="Count" actionListener="#{incre.increment}" update="output" />
+        </h:form>
+
+
+    </h:body>
+</html>
