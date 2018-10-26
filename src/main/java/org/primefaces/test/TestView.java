@@ -13,7 +13,7 @@ public class TestView implements Serializable {
     
     @PostConstruct  
     public void init() {
-        testString = "Welcome to PrimeFaces!!!";
+        testString = "Welcome";
     }
 
     public String getTestString() {

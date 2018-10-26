@@ -3,7 +3,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b = "http://bootsfaces.net/ui">
 
     <h:head>
         <title>PrimeFaces Test</title>
@@ -24,6 +25,38 @@
             <p:commandButton value="Count" actionListener="#{incre.increment}" update="output" />
         </h:form>
 
+        <p:spacer height="500" width="500" />
 
+        <h:form>
+            <b:container layout="fluid">
+                <b:panel title="check sca" look="primary">
+                    <b:row>
+                        <b:column medium-screen="2">
+                            <h:outputText value="Username:" for="username" />
+                        </b:column>
+                        <b:column medium-screen="4">
+                            <b:inputText placeholder="Username" id="username" value=""
+                                         ajax="true" autocomplete="false">
+                                <f:facet name="prepend">
+                                    <b:icon name="user" />
+                                </f:facet>
+                            </b:inputText>
+                        </b:column>
+                        <b:column medium-screen="6" style-class="message">
+                            <b:message for="username" />
+                        </b:column>
+                    </b:row>
+                    <b:row>
+                        <b:column  medium-screen="6" style-class="message">
+                            <b:button medium-screen="8" offset="2" look="success" value="DA"/>
+                        </b:column>
+                        <b:column  medium-screen="6" style-class="message">
+                            <b:button medium-screen="8" offset="2" look="danger" value="NE"/>
+                        </b:column>
+                    </b:row>
+
+                </b:panel>
+            </b:container>
+        </h:form>
     </h:body>
 </html>
