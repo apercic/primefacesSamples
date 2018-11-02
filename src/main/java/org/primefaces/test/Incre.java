@@ -14,7 +14,7 @@ public class Incre implements Serializable {
 
     @PostConstruct
     public void init() {
-        ikebana = "Welcome";
+        ikebana = "Welcome ikebana";
     }
 
     public void setNumber(int number) {
