@@ -1,8 +1,11 @@
 package org.primefaces.test;
 
-import org.apache.http.*;
+import model.Plant;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 import javax.annotation.PostConstruct;
@@ -20,38 +23,46 @@ public class Httpcalls implements Serializable {
     @PostConstruct
     public void init() {
         ikebana = "prva";
+
     }
 
     //must have getters and setters
     public void setIkebana(String ikebana) {
         this.ikebana = ikebana;
     }
+
     public String getIkebana() {
         return ikebana;
     }
 
-    public String hpp() {
+    /**
+     * Get json object from test server and displays it in field ikebana
+     *
+     * @return
+     */
+    public void hppRequest() {
         ikebana = "nova nova";
 
-        DefaultHttpClient httpclient = new DefaultHttpClient();
+        HttpClient client = HttpClientBuilder.create().build();
         try {
-            HttpHost target = new HttpHost("jsonplaceholder.typicode.com", 80, "http");
-            HttpGet getRequest = new HttpGet("/todos/1");
-
-            HttpResponse httpResponse = httpclient.execute(target, getRequest);
-            HttpEntity entity = httpResponse.getEntity();
+            HttpGet request = new HttpGet("http://jsonplaceholder.typicode.com/todos/1");
+            HttpResponse response = client.execute(request);
+            HttpEntity entity = response.getEntity();
 
             if (entity != null) {
-                String temp =  EntityUtils.toString(entity);
+                String temp = EntityUtils.toString(entity);
                 ikebana = temp;
                 System.out.println(temp);
+                EntityUtils.consume(entity);  //relesea entity
             }
-
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            httpclient.getConnectionManager().shutdown();
         }
-        return "";
+    }
+
+    public void asignObject() {
+        Plant myFirstPlant = new Plant("marjetica", "bela");
+
+
     }
 }
